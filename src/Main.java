@@ -17,18 +17,18 @@ public class Main {
                     Education.values()[new Random().nextInt(Education.values().length)])
             );
         }
-        Stream<Person> stream = persons.stream();
-        System.out.println(stream.filter(age -> age.getAge() < 18) .count());
 
-        Stream<Person> stream1 = persons.stream();
-        List<String> familySoldier = stream1.filter(sex -> sex.getSex() == Sex.MAN)
-        .filter(age -> age.getAge() > 17 && age.getAge() < 28)
+        System.out.println(persons.stream().filter(age -> age.getAge() < 18).count());
+
+        List<String> familySoldier = persons.stream()
+                .filter(sex -> sex.getSex() == Sex.MAN)
+                .filter(age -> age.getAge() > 17 && age.getAge() < 28)
                 .map(String::valueOf)
                 .collect(Collectors.toList());
         System.out.println(familySoldier.toString());
-//
-        Stream<Person> stream2 = persons.stream();
-        List<Person> peopleWorker = stream2.filter(education -> education.getEducation() == Education.HIGHER)
+
+        List<Person> peopleWorker = persons.stream()
+                .filter(education -> education.getEducation() == Education.HIGHER)
                 .filter(age -> age.getAge() > 18)
                 .filter(person -> person.getSex() == Sex.MAN && person.getAge() < 65 ||
                         person.getSex() == Sex.WOMAN && person.getAge() < 60)
